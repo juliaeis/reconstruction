@@ -408,6 +408,11 @@ def preprocessing(gdirs):
     :return None, but creates required files
     """
 
+    workflow.gis_prepro_tasks(gdirs)
+    workflow.climate_tasks(gdirs)
+    workflow.inversion_tasks(gdirs)
+    workflow.execute_entity_task(tasks.init_present_time_glacier, gdirs)
+    '''
     list_tasks = [
         tasks.glacier_masks,
         tasks.compute_centerlines,
@@ -418,7 +423,7 @@ def preprocessing(gdirs):
         tasks.catchment_intersections,
         tasks.catchment_width_geom,
         tasks.catchment_width_correction,
-        tasks.process_histalp_data
+        #tasks.process_histalp_data
     ]
     for task in list_tasks:
         workflow.execute_entity_task(task, gdirs)
@@ -428,7 +433,7 @@ def preprocessing(gdirs):
     workflow.execute_entity_task(mass_conservation_inversion, gdirs)
     workflow.execute_entity_task(tasks.filter_inversion_output, gdirs)
     workflow.execute_entity_task(tasks.init_present_time_glacier, gdirs)
-
+    '''
 
 def synthetic_experiments_parallel(gdirs):
     """
